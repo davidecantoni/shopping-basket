@@ -1,6 +1,6 @@
-This is a simple shopping basket written in node.js
+This is a simple shopping basket and receipt generator written in node.js
 
-You can add products via interactive command line user interface.
+You can add products with the interactive command line user interface.
 
 ```
 Hi, welcome to R3PI order bot
@@ -16,7 +16,7 @@ Hi, welcome to R3PI order bot
   Exit app
 ```
 
-Once you are done you can easily print the receipt.
+Once you are done you can also print the receipt.
 
 ```
                          
@@ -54,44 +54,48 @@ Total amount (incl. MWST):                CHF 4.61
             
 ```
 
-##Install
+Install
+=====
 
 Download the repo and run
 
 ```npm install``` or ```npm yarn```
 
 
-##Usage
+Usage
+=====
 
 Run the app with the following commands:
 
 ```npm start``` or ```yarn start```
 
-Once the app runs you should be able to add products easily via interactive command line user interface (by using arrow keys).
+You should be able to add the products easily via "interactive command line user interface" by using arrow keys.
 
 Once you add enough products to the basket, select "Checkout and print receipt" which will print the receipt.
 
+Config Settings
+=====
 
-In case you wanna the tests for the price and tax calculator:
+In case you wanna change the price of the products or add products to the list, you can modify the configuration following.
+
+`src/config.js`
+
+> TODO: write more about the settings that can be changed...
+
+Additional commands
+=====
+Run the folowing command to run the tests for the price and tax calculator.
 
 ```npm test``` or ```yarn test```
 
 > TODO: add more test coverage, especially for the receipt generator.
 
 
-To check the linting of the file you can use the following command:
+Run the following command to check the linting.
 ```npm run lint``` or ```yarn lint```
 
-##Config Settings
-
-In case you wanna change the price of the products or even add more products to the list, only modify the following file:
-
-`src/config.js`
-
-> TODO: write more specific what can be changed and how... ;)
-
-
-##Inspiration
+Inspiration
+=====
 
 For the receipt generator i got inspired by the following receipt.
 
