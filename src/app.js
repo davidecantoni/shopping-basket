@@ -26,21 +26,3 @@ order()
     receipt.pipe(process.stdout);
   })
   .catch(err => console.error(err));
-
-// const lines = string.split('\n');
-
-// function* foo() {
-//   var index = 0;
-//   while (index <= lines.length)
-//     yield index++;
-// }
-
-// var iterator = foo();
-
-// const timeout = setInterval(() => {
-//   const { value, done } = iterator.next();
-//   console.log(lines[value]);
-//   if (done) {
-//     clearInterval(timeout);
-//   }
-// }, 50);
