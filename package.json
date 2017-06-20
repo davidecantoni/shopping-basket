@@ -1,0 +1,21 @@
+{
+  "name": "shopping_basket_calculator",
+  "version": "1.0.0",
+  "description": "Shopping basket calculator as an exercise for R3PI",
+  "main": "app.js",
+  "author": "Davide Cantoni",
+  "license": "MIT",
+  "scripts": {
+    "start": "node ./src/app.js",
+    "lint": "eslint .",
+    "test": "./node_modules/.bin/mocha -r test/config.js --colors --reporter spec --recursive test"
+  },
+  "devDependencies": {
+    "chai": "^4.0.2",
+    "eslint": "^4.0.0",
+    "mocha": "^3.4.2"
+  },
+  "dependencies": {
+    "inquirer": "3.1.1"
+  }
+}
