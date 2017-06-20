@@ -12,6 +12,8 @@ const priceCalculator = (basketItems, productConfig) => {
 
   let sum = 0;
 
+  // go through all products and see if they have been ordered
+  // this is ok for this small project but if we would have 100 of product we should invert it!
   const items = productConfig.reduce((col, product) => {
     const item = basketItems[product.key];
 

@@ -1,3 +1,4 @@
+// receipt specific configuration
 const configReceipt = {
   invoiceWidth: 50,
   tax: 2.50,
@@ -34,6 +35,7 @@ const configReceipt = {
   }
 };
 
+// available products
 const products = [
   {
     key: 'apples',
@@ -61,6 +63,7 @@ const products = [
 const welcome = 'Hi, welcome to R3PI order bot';
 const byebye = 'sad to see you go...';
 
+// inquiry wizard
 const productQuestions = (addedItems) => {
   const choices = products.map(product => ({
     name: `${product.name} (${product.price}${configReceipt.text.cent}) ${product.discount ? product.discount.label : ''}`,

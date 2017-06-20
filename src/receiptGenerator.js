@@ -179,7 +179,7 @@ class ReceiptGenerator extends Readable {
   }
 
   _centerText(text) {
-    return util.format(`${this._getChar(Math.round((this.config.invoiceWidth - text.length) / 2))}%s`, text);
+    return `${this._getChar(Math.round((this.config.invoiceWidth - text.length) / 2))}${text}`;
   }
 }
 
