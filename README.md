@@ -76,11 +76,11 @@ Once you add enough products to the basket, select "Checkout and print receipt" 
 Config Settings
 =====
 
-In case you wanna change the price of the products or add products to the list, you can modify the configuration following.
+In case you wanna change the price of the products or add products to the list, you can modify the configuration.
 
 `src/config.js`
 
-> TODO: write more about the settings that can be changed...
+> TODO: list all available settings and explain their usage.
 
 Additional commands
 =====
