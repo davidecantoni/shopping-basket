@@ -18,36 +18,34 @@ class ReceiptGenerator extends Readable {
 
     // header
     this._processTextLines(this.config.text.header);
-
-    this.streamLine('');
+    this._streamLine('');
 
     // no & date
     this._subHeader();
 
     // listing
     const line = this._getChar(invoiceWidth, '-');
-    this.streamLine(line);
+    this._streamLine(line);
     this._listingHeader();
-    this.streamLine(line);
+    this._streamLine(line);
 
     if (items) {
       this._listingContent(items);
-      this.streamLine(line);
+      this._streamLine(line);
     }
 
     // tax
     if (items && tax) {
-      this.streamLine('');
+      this._streamLine('');
       this._tax(tax);
     }
-
-    this.streamLine('');
+    this._streamLine('');
 
     // footer
     this._processTextLines(this.config.text.footer);
 
     // everything done, close stream
-    this.streamLine(EOL);
+    this._streamLine(EOL);
   }
 
   _subHeader() {
@@ -55,13 +53,13 @@ class ReceiptGenerator extends Readable {
 
     // print order number
     const order = this._getRandomInt(1000, 2000);
-    this.streamLine(
+    this._streamLine(
       `${orderNumber}:${this._getChar(dateWidth - orderNumber.length)}${order}`
     );
 
     // print date
     const formatedDate = new Date().toISOString().substring(0,10);
-    this.streamLine(
+    this._streamLine(
       `${date}:${this._getChar(dateWidth - date.length)}${formatedDate}`
     );
   }
@@ -76,7 +74,7 @@ class ReceiptGenerator extends Readable {
       }
     } = this.config;
 
-    this.streamLine(
+    this._streamLine(
       `${qty}${this._getChar(qtyWidth - qty.length)}` +
       `${product}${this._getChar(productWidth - product.length)}` +
       `${this._getChar(totalWidth - total.length)}${total}`
@@ -98,7 +96,7 @@ class ReceiptGenerator extends Readable {
     // print line
     data.forEach((item, index) => {
       const itemDescription = `${item.name} (${item.price}${cent})`;
-      this.streamLine(
+      this._streamLine(
         `${item.qty}${this._getChar(qtyWidth - item.qty.toString().length)}` +
         `${itemDescription}${this._getChar(productWidth - itemDescription.length)}` +
         `${this._getChar(totalWidth - item.total.length - currency.length - 1)}${currency} ${item.total}`
@@ -106,14 +104,14 @@ class ReceiptGenerator extends Readable {
 
       if (item.discount) {
         const text = `${this._getChar(7)}${item.discount.label}`;
-        this.streamLine(
+        this._streamLine(
           `${text}${this._getChar(invoiceWidth - text.length - item.discount.total.length - currency.length - 2)}${currency} -${item.discount.total}`
         );
       }
 
       // print line
       if (index < data.length - 1) {
-        this.streamLine('');
+        this._streamLine('');
       }
     });
   }
@@ -128,7 +126,7 @@ class ReceiptGenerator extends Readable {
       gst,
       tax
     );
-    this.streamLine(
+    this._streamLine(
       `${g}:${this._getChar(taxWidth - g.length + 1)}${currency} ${taxAmount}`
     );
 
@@ -137,7 +135,7 @@ class ReceiptGenerator extends Readable {
       totalAmountExcl,
       gst
     );
-    this.streamLine(
+    this._streamLine(
       `${e}:${this._getChar(taxWidth - e.length + 1)}${currency} ${sum}`
     );
 
@@ -146,23 +144,24 @@ class ReceiptGenerator extends Readable {
       totalAmountIncl,
       gst
     );
-    this.streamLine(
+    this._streamLine(
       `${i}:${this._getChar(taxWidth - i.length + 1)}${currency} ${incl}`
     );
   }
 
-  streamLine(string) {
-    if (string === null) {
+  _streamLine(string) {
+    if (string === null || string === EOL) {
       return this.push(string);
     }
 
     this.push(string + EOL, 'utf8');
   }
 
+  // helper methods
   _processTextLines(text) {
     // go through each line and stream it to stdout
     text.split(EOL).forEach(line => {
-      this.streamLine(this._centerText(line.trim()));
+      this._streamLine(this._centerText(line.trim()));
     });
   }
 
