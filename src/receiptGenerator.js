@@ -7,15 +7,10 @@ const SPACE = '\xa0';
 class ReceiptGenerator extends Readable {
   constructor(config) {
     super();
-    this._setConfig(config);
+    this.config = config;
   }
 
   _read() {}
-
-  _setConfig(config) {
-    // perform some validation
-    this.config = config;
-  }
 
   generateReceipe(data) {
     const { invoiceWidth } = this.config;
